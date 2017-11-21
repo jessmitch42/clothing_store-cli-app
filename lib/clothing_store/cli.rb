@@ -4,6 +4,7 @@ class ClothingStore::CLI
 
   def call
     intro_message
+    list_store_options
   end
 
   def intro_message
@@ -22,6 +23,15 @@ class ClothingStore::CLI
     puts "Check out the details and open the product directly in your browser if you're ready to buy it. :)"
     puts "Leave the program at any time by entering 'exit'."
     puts
+  end
+
+  def list_store_options
+    puts "Let's get started!"
+    puts "Below you'll see a few online clothing stores. Select one by entering the corresponding number."
+
+    #loop through stores (Stores.all)
+    stores = ["JCrew", "SSENSE", "Frank and Oak"]
+    stores.each.with_index(1) { |store, index| puts "#{index}. #{store}" }
   end
 end
 
