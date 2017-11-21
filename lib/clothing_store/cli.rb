@@ -45,9 +45,26 @@ class ClothingStore::CLI
     stores = ClothingStore::Store.all
     stores.each.with_index(1) { |store, index| puts "#{index}. #{store.name}" }
 
-    # store_selection = gets.strip
+    get_users_store_choice(stores)
+  end
 
+  def get_users_store_choice(stores)
+    store_selection = gets.strip
+    selection_to_i = store_selection.to_i
 
+    if store_selection == "exit"
+      exit
+    elsif selection_to_i > 0 && selection_to_i <= stores.length
+      get_store_info(store_selection)
+    else
+      puts "Eek! That's an invalid option. Please choose a store. (eg. '1')"
+      # self-reference user input "get" until they give a valid input
+      get_users_store_choice(stores)
+    end
+  end
+
+  def get_store_info(user_store_selection)
+    puts "INNNN"
   end
 
 end
