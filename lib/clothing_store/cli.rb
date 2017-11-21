@@ -55,7 +55,8 @@ class ClothingStore::CLI
     if store_selection == "exit"
       exit
     elsif selection_to_i > 0 && selection_to_i <= stores.length
-      get_store_info(store_selection)
+      user_store_choice = stores[selection_to_i - 1]
+      get_store_info_with_scraper(user_store_choice)
     else
       puts "Eek! That's an invalid option. Please choose a store. (eg. '1')"
       # self-reference user input "get" until they give a valid input
@@ -63,8 +64,15 @@ class ClothingStore::CLI
     end
   end
 
-  def get_store_info(user_store_selection)
-    puts "INNNN"
+  def get_store_info_with_scraper(user_store_selection)
+    store_name = user_store_selection.name
+    store_url = user_store_selection.url
+
+    puts
+    puts "Getting the clothing listing for #{store_name}..."
+    puts "Using the URL: #{store_url}"
+
+    clothing_list_scraper = ClothingStore::Scraper.new(user_store_selection)
   end
 
 end

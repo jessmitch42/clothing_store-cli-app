@@ -5,7 +5,8 @@
   # the gem should just get instantiated here
 # ~_~_~_~__~~_ DELETE LATER _~_~_~_~_~_
 
-#puts "checking it's not broken :D"
 require './lib/clothing_store'
+require 'nokogiri'
+require 'open-uri'
 
 ClothingStore::CLI.new.call
