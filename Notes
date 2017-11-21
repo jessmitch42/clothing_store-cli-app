@@ -5,3 +5,15 @@ Steps taken (started Friday, November 17th):
 - small update to ReadMe to make sure repo is set up properly on GitHub and locally
 - created lib/is_it_poly/cli.rb and updated lib/is_it_poly.rb so controller class is working (following the Learn video about this)
 - updated bin/is_it_poly and tested controller class to make sure the basics are working so far (they are! :) )
+
+*** WATCH IF YOU'RE LOST ***
+https://learn.co/tracks/full-stack-web-development-v3/object-oriented-ruby/final-projects/cli-data-gem-walkthrough
+
+*** ANTI-PATTERNS VIDEO ***
+1. don't "zip" info (separate arrays of data where values as certain indexes relate to same source--> should just be one object with attributes)
+2. don't scrape site multiple times if you can get all the info you need the first time (if you're scraping jessmitchell.ca multiple times, refactor!)
+3. class instance variable = weird (in a class method, having an @instance method that doesn't get "saved" properly)
+4. don't have classes that never get properly instantiated
+5. avoid hardcoded numbers when it can be made to vary. E.g. avoid using 10 instead of array.length in case the array changes
+6. use "collect" instead of "each" if you're just pushing values into an array and returning that array (check if a method exists to simplify your code)
+Basically, don't spread your data all over. Create classes to organize your data when needed.
