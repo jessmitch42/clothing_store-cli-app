@@ -1,6 +1,6 @@
-# IsItPoly
+# Is It Poly
 
-Welcome to "Is It Poly?" -- very, very important gem!
+Welcome to "Is It Poly?" a.k.a "Ya.... it's nice... but is it polyester??" -- very, very important gem!
 
 In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/is_it_poly`. To experiment with that code, run `bin/console` for an interactive prompt.
 
