@@ -3,11 +3,25 @@
 class ClothingStore::CLI
 
   def call
-    # INTRO MESSAGE
+    intro_message
+  end
 
-    puts "Welcome to 'Is It Poly?'"
+  def intro_message
+    # INTRO MESSAGE w/ line breaks
+    puts
+    puts "***********************************"
+    puts "**                               **"
+    puts "**            WELCOME!           **"
+    puts "**                               **"
+    puts "***********************************"
+    puts
+
+    # ADDITIONAL INFO
+    puts "Welcome to my clothing store gem!"
     puts "Use this program to see what clothes are for sale from a variety of stores."
-    puts "If it looks like a great piece of clothing"
+    puts "Check out the details and open the product directly in your browser if you're ready to buy it. :)"
+    puts "Leave the program at any time by entering 'exit'."
+    puts
   end
 end
 
