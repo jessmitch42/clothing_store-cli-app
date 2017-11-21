@@ -1,10 +1,10 @@
 Steps taken (started Friday, November 17th):
 
 - bundle gem install to create new gem template
-- created repo "is_it_poly-cli-app" (following Learn naming convention)
+- created repo "clothing_store-cli-app" (following Learn naming convention)
 - small update to ReadMe to make sure repo is set up properly on GitHub and locally
-- created lib/is_it_poly/cli.rb and updated lib/is_it_poly.rb so controller class is working (following the Learn video about this)
-- updated bin/is_it_poly and tested controller class to make sure the basics are working so far (they are! :) )
+- created lib/clothing_store/cli.rb and updated lib/clothing_store.rb so controller class is working (following the Learn video about this)
+- updated bin/clothing_store and tested controller class to make sure the basics are working so far (they are! :) )
 
 *** WATCH IF YOU'RE LOST ***
 https://learn.co/tracks/full-stack-web-development-v3/object-oriented-ruby/final-projects/cli-data-gem-walkthrough

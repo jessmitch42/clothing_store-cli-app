@@ -6,6 +6,6 @@
 # ~_~_~_~__~~_ DELETE LATER _~_~_~_~_~_
 
 #puts "checking it's not broken :D"
-require './lib/is_it_poly'
+require './lib/clothing_store'
 
-IsItPoly::CLI.new.call
+ClothingStore::CLI.new.call

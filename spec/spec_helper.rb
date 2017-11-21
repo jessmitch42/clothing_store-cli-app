@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "is_it_poly"
+require "clothing_store"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

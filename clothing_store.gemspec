@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "is_it_poly/version"
+require "clothing_store/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "is_it_poly"
-  spec.version       = IsItPoly::VERSION
+  spec.name          = "clothing_store"
+  spec.version       = ClothingStore::VERSION
   spec.authors       = ["TODO: Write your name"]
   spec.email         = ["TODO: Write your email address"]
 
