@@ -43,10 +43,35 @@ class ClothingStore::Scraper
     doc = Nokogiri::HTML(html)
 
     clothing_containers = doc.css(".product-tile--info")
-    puts clothing_containers[0]
-    # clothing_containers.each do |item|
-    #
-    # end
+    base_url = "https://www.jcrew.com"
+
+    clothing_containers.each do |clothing|
+      item = ClothingStore::Item.new
+
+      a_tag = clothing.css("a.product-tile__link")
+      item.url = a_tag[0] && a_tag[0]["href"] ? base_url + a_tag[0]["href"] : ""
+      item.name = clothing.css(".tile__detail--name").text
+      item.price = clothing.css(".tile__detail--price--list").text
+      item.brand = self.name
+
+      @store.add_clothing_item(item)
+    end
+
+    @store.display_clothing_items
+  end
+
+  def list_jcrew_items
+
+  end
+
+  def get_users_jcrew_clothing_choice
+
+    puts
+
+  end
+
+  def scrape_jcrew_item(item)
+
   end
 
   def scrape_ssense_main_page
