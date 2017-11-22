@@ -10,21 +10,9 @@ I am currently featuring JCrew's tall women's line and SSENSE's women's clothing
 
 Enjoy!
 
-## Installation
+## Usage
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'clothing_store'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install clothing_store
+Fork, clone, 'ruby bin/clothing_store'
 
 ## Development
 
