@@ -1,7 +1,6 @@
 # Parent Scraper Class
 
 class ClothingStore::Scraper
-
   attr_reader :store, :name, :url, :doc
 
   def initialize(store)
@@ -31,12 +30,12 @@ class ClothingStore::Scraper
       item_choice = item_choice.to_i
 
       if item_choice > 0 && item_choice <= items.length
-        # scrape for indiivudal item
-        clothing_item_obj = items[item_choice - 1]
-        # second-level scrape
-        scrape_specific_jcrew_item(clothing_item_obj)
+        # retrieve item instance that the user selected
+        clothing_item_instance = items[item_choice - 1]
+        # second-level scrape of selected item
+        scrape_specific_jcrew_item(clothing_item_instance)
         # display item details
-        clothing_item_obj.display_item_details
+        clothing_item_instance.display_item_details
       else
         puts "Oops! Looks like an invalid choice."
         get_users_clothing_choice(items)

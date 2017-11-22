@@ -9,14 +9,14 @@ class ClothingStore::JCrewScraper < ClothingStore::Scraper
     @store = store
     @doc = scrape_doc_with_nokogiri(store)
     @base_url = "https://www.jcrew.com" # required for setting url below
-    
+
     get_jcrew_items(@doc)
   end
 
   def get_jcrew_items(doc)
     clothing_html_containers = doc.css(".product-tile--info")
 
-    #loop through all results
+    #loop through all results and save new Item instance for each
     clothing_html_containers.collect do |clothing|
       item = ClothingStore::Item.new
 
