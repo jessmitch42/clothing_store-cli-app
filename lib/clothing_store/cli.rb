@@ -38,7 +38,7 @@ class ClothingStore::CLI
   end
 
   def list_store_options
-    puts "Below you'll see a few online clothing stores. Select one by entering the corresponding number."
+    puts "Below you'll see a couple online clothing stores. Select one by entering the corresponding number."
 
     #loop through stores (Stores.all)
     stores = ClothingStore::Store.all
