@@ -25,4 +25,8 @@ class ClothingStore::Store
     end
   end
 
+  def get_clothing_items
+    @clothing_items
+  end
+
 end
