@@ -24,9 +24,10 @@
     Working on it!
 
 [X] Prepare a video demo (narration helps!) describing how a user would interact with your working gem.
+    https://drive.google.com/open?id=1yYIeU1OKp0SlnD2Fh6YlDWyZ8kQBvIxd (no narration.)
 
+[X] Write a blog post about the project and process.
+    http://jessmitchell.ca/blog/blog_4.html
 
-[ ] Write a blog post about the project and process.
-
-
-[ ] On Learn, submit links to the GitHub repository for your app, your video demo, and your blog post each to the corresponding textbox in the right rail, and hit "I'm done" to wrap it up.
+[X] On Learn, submit links to the GitHub repository for your app, your video demo, and your blog post each to the corresponding textbox in the right rail, and hit "I'm done" to wrap it up.
+    done!!
