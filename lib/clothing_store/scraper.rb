@@ -1,70 +1,26 @@
 class ClothingStore::Scraper
   # Current options:
-  # https://www.ssense.com/en-ca/women/clothing
   # https://www.jcrew.com/ca/c/womens_special_sizes/tall
   # https://www.frankandoak.com/women
 
-  attr_reader :store, :name, :url
+  attr_reader :store, :name, :url, :doc
 
   def initialize(store)
     @store = store
     @name = store.name
     @url = store.url
-    choose_scraper_by_name
   end
 
-  def choose_scraper_by_name
-    # case statement to choose which scraper to use (three options)
-    # if somehow a different option got let in, panic and start the program over.
-    doc = scrape_doc_with_nokogiri(self.url, self.name)
+  def scrape_doc_with_nokogiri(store)
+    waiting_msg(store.name)
 
-    case self.name
-    when "JCrew"
-      get_jcrew_items(doc)
-    when "SSENSE"
-      get_ssense_items(doc)
-    when "Frank and Oak"
-      get_frank_and_oak_items(doc)
-    else
-      puts "Um.. this is embarrassing. Something went wrong so I'm sending you back to the beginning."
-      ClothingStore::CLI.new.call
-    end
-  end
-
-  def scrape_doc_with_nokogiri(url, name)
-    waiting_msg(name)
-
-    html = open(url)
+    html = open(store.url)
     doc = Nokogiri::HTML(html)
   end
 
   def waiting_msg(store_name)
     puts
     puts "This should only take a second or two..."
-  end
-
-  def get_jcrew_items(doc)
-
-    clothing_containers = doc.css(".product-tile--info")
-    base_url = "https://www.jcrew.com" # required for setting url below
-
-    #loop through all results
-    clothing_containers.collect do |clothing|
-      item = ClothingStore::Item.new
-
-      a_tag = clothing.css("a.product-tile__link")
-      item.url = a_tag[0] && a_tag[0]["href"] ? base_url + a_tag[0]["href"] : ""
-      item.name = clothing.css(".tile__detail--name").text
-      item.price = clothing.css(".tile__detail--price--list").text
-      item.brand = self.name
-
-      @store.add_clothing_item(item)
-    end
-
-    @store.display_clothing_items
-    items = @store.get_clothing_items
-
-    get_users_clothing_choice(items)
   end
 
   def get_users_clothing_choice(items)
@@ -76,9 +32,11 @@ class ClothingStore::Scraper
       item_choice = item_choice.to_i
 
       if item_choice > 0 && item_choice <= items.length
-        #scrape for indiivudal item
+        # scrape for indiivudal item
         clothing_item_obj = items[item_choice - 1]
+        # second-level scrape
         scrape_specific_jcrew_item(clothing_item_obj)
+        # display item details
         clothing_item_obj.display_item_details
       else
         puts "Oops! Looks like an invalid choice."
@@ -86,23 +44,9 @@ class ClothingStore::Scraper
       end
     else
       puts "Looks like there are no clothes to look at so.. game over, bye!! ¯\_(ツ)_/¯"
+      exit
     end
 
-  end
-
-  def scrape_specific_jcrew_item(item)
-    puts "heerrreee"
-    item_page = scrape_doc_with_nokogiri(item.url, item.name)
-    # get extra product details
-    details = item_page.css("ul.bullet-list li")
-    # add each product detail to the item's "general details" attr
-    details.each {|detail| item.general_details << detail.text}
-  end
-
-  def get_ssense_items(doc)
-  end
-
-  def get_frank_and_oak_items(doc)
   end
 
 

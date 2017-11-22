@@ -30,9 +30,6 @@ class ClothingStore::CLI
     jcrew = ClothingStore::Store.new("JCrew")
     jcrew.url = "https://www.jcrew.com/ca/c/womens_special_sizes/tall"
 
-    ssense = ClothingStore::Store.new("SSENSE")
-    ssense.url = "https://www.ssense.com/en-ca/women/clothing"
-
     frank_and_oak = ClothingStore::Store.new("Frank and Oak")
     frank_and_oak.url = "https://www.frankandoak.com/women"
   end
@@ -72,7 +69,11 @@ class ClothingStore::CLI
     puts "Getting the clothing listing for #{store_name}..."
     puts "Using the URL: #{store_url}"
 
-    clothing_list_scraper = ClothingStore::Scraper.new(user_store_selection)
+    if store_name == "JCrew"
+      clothing_list_scraper = ClothingStore::JCrewScraper.new(user_store_selection)
+    else
+      clothing_list_scraper = ClothingStore::FrankAndOakScraper.new(user_store_selection)
+    end
   end
 
 end
