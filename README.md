@@ -2,12 +2,13 @@
 
 Welcome to my Clothing Store CLI Gem!
 
-Use this Gem to explore women's clothing from different online stores before deciding if you want to purchase anything.
+Use this gem to explore women's clothing from different online stores before deciding if you want to purchase anything.
+
+Other use cases: online shopping while you're writing a ruby gem.
 
 I am currently featuring JCrew's tall women's line and SSENSE's women's clothing line. If you don't like either, you're out of luck. O:)
 
 Enjoy!
-
 
 ## Installation
 
