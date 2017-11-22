@@ -3,17 +3,18 @@ require_relative "./scraper"
 # https://www.jcrew.com/ca/c/womens_special_sizes/tall
 
 class ClothingStore::JCrewScraper < ClothingStore::Scraper
-  attr_reader :doc, :store
+  attr_reader :doc, :store, :base_url
 
   def initialize(store)
     @store = store
     @doc = scrape_doc_with_nokogiri(store)
+    @base_url = "https://www.jcrew.com" # required for setting url below
+    
     get_jcrew_items(@doc)
   end
 
   def get_jcrew_items(doc)
     clothing_html_containers = doc.css(".product-tile--info")
-    base_url = "https://www.jcrew.com" # required for setting url below
 
     #loop through all results
     clothing_html_containers.collect do |clothing|

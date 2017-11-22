@@ -3,11 +3,12 @@ require_relative "./scraper"
 # https://www.frankandoak.com/women
 
 class ClothingStore::SSenseScraper < ClothingStore::Scraper
-  attr_reader :doc, :store
+  attr_reader :doc, :store, @base_url
 
   def initialize(store)
     @store = store
     @doc = scrape_doc_with_nokogiri(store)
+    @base_url = "https://www.ssense.com"
     get_ssense_items(@doc)
   end
 
@@ -21,7 +22,7 @@ class ClothingStore::SSenseScraper < ClothingStore::Scraper
       # item = ClothingStore::Item.new
 
       # a_tag = clothing.css("a.product-tile__link")
-      # item.url = a_tag[0] && a_tag[0]["href"] ? base_url + a_tag[0]["href"] : ""
+      # item.url = a_tag[0] && a_tag[0]["href"] ? self.base_url + a_tag[0]["href"] : ""
       # item.name = clothing.css(".tile__detail--name").text
       # item.price = clothing.css(".tile__detail--price--list").text
       # item.brand = name
