@@ -52,6 +52,7 @@ class ClothingStore::CLI
     selection_to_i = store_selection.to_i
 
     if store_selection == "exit"
+      puts "Au Revoir!!"
       exit
     elsif selection_to_i > 0 && selection_to_i <= stores.length
       user_store_choice = stores[selection_to_i - 1]

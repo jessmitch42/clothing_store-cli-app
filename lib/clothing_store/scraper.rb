@@ -38,7 +38,7 @@ class ClothingStore::Scraper
       # user chooses next step
       item_instance.open_item_url_or_go_back
     elsif item_choice == "exit"
-      puts"Byyyeeee!!! ¯\_(ツ)_/¯"
+      puts"Byyyeeee!!! ¯\\_(ツ)_/¯"
       exit
     elsif item_choice == "back"
       puts "Starting over!"

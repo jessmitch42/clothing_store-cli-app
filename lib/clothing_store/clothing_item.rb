@@ -14,7 +14,8 @@ class ClothingStore::Item
 
   def open_item_url_or_go_back
     puts
-    puts "Interested in buying this item? Enter 'open' to see it in the browser or 'back' to return to the list"
+    puts "Interested in buying this item? Enter 'open' to see it in the browser or 'back' to return to the list."
+    puts "(Over it? Enter 'exit' to leave.)"
 
     input = gets.strip
 
