@@ -9,10 +9,10 @@ class ClothingStore::Scraper
     @url = store.url
   end
 
-  def scrape_doc_with_nokogiri(store)
-    waiting_msg(store.name)
+  def scrape_doc_with_nokogiri(instance)
+    waiting_msg(instance.name)
 
-    html = open(store.url)
+    html = open(instance.url)
     doc = Nokogiri::HTML(html)
   end
 
@@ -33,7 +33,7 @@ class ClothingStore::Scraper
         # retrieve item instance that the user selected
         clothing_item_instance = items[item_choice - 1]
         # second-level scrape of selected item
-        scrape_specific_jcrew_item(clothing_item_instance)
+        determine_and_run_item_scraper(clothing_item_instance)
         # display item details
         clothing_item_instance.display_item_details
       else
@@ -47,5 +47,8 @@ class ClothingStore::Scraper
 
   end
 
+  def determine_and_run_item_scraper(item)
+    self.store.name == "JCrew" ? scrape_jcrew_item(item) : scrape_ssense_item(item)
+  end
 
 end

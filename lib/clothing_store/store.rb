@@ -1,5 +1,4 @@
 class ClothingStore::Store
-
   attr_accessor :name, :url, :clothing_items
 
   @@all = [] # track stores that have been scraped so fair

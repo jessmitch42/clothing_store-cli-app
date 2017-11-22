@@ -35,7 +35,7 @@ class ClothingStore::JCrewScraper < ClothingStore::Scraper
     get_users_clothing_choice(items)
   end
 
-  def scrape_specific_jcrew_item(item)
+  def scrape_jcrew_item(item)
     item_page = scrape_doc_with_nokogiri(item)
     # get extra product details
     details = item_page.css("ul.bullet-list li")
