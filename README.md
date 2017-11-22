@@ -1,10 +1,13 @@
-# Is It Poly
+# Clothing Store CLI Gem
 
-Welcome to "Is It Poly?" a.k.a "Ya.... it's nice... but is it polyester??" -- very, very important gem!
+Welcome to my Clothing Store CLI Gem!
 
-In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/clothing_store`. To experiment with that code, run `bin/console` for an interactive prompt.
+Use this Gem to explore women's clothing from different online stores before deciding if you want to purchase anything.
 
-TODO: Delete this and the text above, and describe your gem
+I am currently featuring JCrew's tall women's line and SSENSE's women's clothing line. If you don't like either, you're out of luck. O:)
+
+Enjoy!
+
 
 ## Installation
 
@@ -22,10 +25,6 @@ Or install it yourself as:
 
     $ gem install clothing_store
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -34,7 +33,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/clothing_store. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jessmitch42/clothing_store-cli-app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
