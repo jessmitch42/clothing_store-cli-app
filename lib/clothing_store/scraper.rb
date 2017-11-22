@@ -36,6 +36,8 @@ class ClothingStore::Scraper
         determine_and_run_item_scraper(clothing_item_instance)
         # display item details
         clothing_item_instance.display_item_details
+        # user chooses next step
+        open_item_url_or_go_back(clothing_item_instance.url)
       else
         puts "Oops! Looks like an invalid choice."
         get_users_clothing_choice(items)
@@ -49,6 +51,28 @@ class ClothingStore::Scraper
 
   def determine_and_run_item_scraper(item)
     self.store.name == "JCrew" ? scrape_jcrew_item(item) : scrape_ssense_item(item)
+  end
+
+  def open_item_url_or_go_back(url)
+    puts
+    puts "Interested in buying this item? Enter 'open' to see it in the browser or 'back' to return to the list"
+
+    input = gets.strip
+
+    case input.downcase
+    when "exit"
+      puts "See you later!"
+      exit
+    when "open"
+      puts "Opening your item!"
+      system("open", url)
+    when "back"
+      puts "do something"
+    else
+      puts "Please choose 'open', 'back', or 'exit'. :)"
+      open_item_url_or_go_back(url)
+    end
+
   end
 
 end

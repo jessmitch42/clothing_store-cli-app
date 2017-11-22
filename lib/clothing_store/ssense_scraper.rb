@@ -21,9 +21,9 @@ class ClothingStore::SSenseScraper < ClothingStore::Scraper
 
       a_tag = clothing.css("a")
       item.url = a_tag[0] && a_tag[0]["href"] ? self.base_url + a_tag[0]["href"] : ""
-      item.name = clothing.css("p")[1].text
+      item.name = clothing.css("p[itemprop='name']").text
       item.price = "CAD " + clothing.css("p.price span").text
-      item.brand = clothing.css("p")[0].text
+      item.brand = clothing.css("p[itemprop='name']").text
 
       @store.add_clothing_item(item)
     end
@@ -39,8 +39,6 @@ class ClothingStore::SSenseScraper < ClothingStore::Scraper
     # get extra product details
     # on the ssense website the details are hidden on the individual item pages so grab it from a meta tag
     details = item_page.at("meta[name='twitter:description']")["content"]
-
-    # <meta name="twitter:description" content="Low-top buffed leather sneakers in white. Round toe. Tonal lace-up closure. Logo stamp in silver-tone at padded tongue. Padded collar. Perforated detailing at sides.">
 
     details = details.split(". ")
     # add each product detail to the item's "general details" attr
