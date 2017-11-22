@@ -16,7 +16,7 @@ class ClothingStore::Scraper
   def choose_scraper_by_name
     # case statement to choose which scraper to use (three options)
     # if somehow a different option got let in, panic and start the program over.
-    doc = scrape_doc_with_nokogiri
+    doc = scrape_doc_with_nokogiri(self.url, self.name)
 
     case self.name
     when "JCrew"
@@ -31,10 +31,10 @@ class ClothingStore::Scraper
     end
   end
 
-  def scrape_doc_with_nokogiri
-    waiting_msg(self.name)
+  def scrape_doc_with_nokogiri(url, name)
+    waiting_msg(name)
 
-    html = open(self.url)
+    html = open(url)
     doc = Nokogiri::HTML(html)
   end
 
@@ -77,7 +77,9 @@ class ClothingStore::Scraper
 
       if item_choice > 0 && item_choice <= items.length
         #scrape for indiivudal item
-        scrape_specific_jcrew_item(items[item_choice - 1])
+        clothing_item_obj = items[item_choice - 1]
+        scrape_specific_jcrew_item(clothing_item_obj)
+        clothing_item_obj.display_item_details
       else
         puts "Oops! Looks like an invalid choice."
         get_users_clothing_choice(items)
@@ -90,6 +92,11 @@ class ClothingStore::Scraper
 
   def scrape_specific_jcrew_item(item)
     puts "heerrreee"
+    item_page = scrape_doc_with_nokogiri(item.url, item.name)
+    # get extra product details
+    details = item_page.css("ul.bullet-list li")
+    # add each product detail to the item's "general details" attr
+    details.each {|detail| item.general_details << detail.text}
   end
 
   def get_ssense_items(doc)
