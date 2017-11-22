@@ -28,4 +28,5 @@ class ClothingStore::Store
     @clothing_items
   end
 
+
 end
