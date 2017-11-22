@@ -24,18 +24,20 @@ class ClothingStore::CLI
     puts "Check out the details and open the product directly in your browser if you're ready to buy it. :)"
     puts "Leave the program at any time by entering 'exit'."
     puts
+    puts "Let's get started!"
   end
 
   def create_stores
     jcrew = ClothingStore::Store.new("JCrew")
     jcrew.url = "https://www.jcrew.com/ca/c/womens_special_sizes/tall"
+    jcrew.cli = self
 
     ssense = ClothingStore::Store.new("SSENSE")
     ssense.url = "https://www.ssense.com/en-ca/women"
+    ssense.cli = self
   end
 
   def list_store_options
-    puts "Let's get started!"
     puts "Below you'll see a few online clothing stores. Select one by entering the corresponding number."
 
     #loop through stores (Stores.all)
@@ -53,7 +55,7 @@ class ClothingStore::CLI
       exit
     elsif selection_to_i > 0 && selection_to_i <= stores.length
       user_store_choice = stores[selection_to_i - 1]
-      get_store_info_with_scraper(user_store_choice)
+      user_store_choice.get_store_info_with_scraper
     else
       puts "Eek! That's an invalid option. Please choose a store. (eg. '1')"
       # self-reference user input "get" until they give a valid input
@@ -61,19 +63,5 @@ class ClothingStore::CLI
     end
   end
 
-  def get_store_info_with_scraper(user_store_selection)
-    store_name = user_store_selection.name
-    store_url = user_store_selection.url
-
-    puts
-    puts "Getting the clothing listing for #{store_name}..."
-    puts "Using the URL: #{store_url}"
-
-    if store_name == "JCrew"
-      clothing_list_scraper = ClothingStore::JCrewScraper.new(user_store_selection)
-    else
-      clothing_list_scraper = ClothingStore::SSenseScraper.new(user_store_selection)
-    end
-  end
 
 end

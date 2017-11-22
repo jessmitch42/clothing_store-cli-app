@@ -23,30 +23,30 @@ class ClothingStore::Scraper
 
   def get_users_clothing_choice(items)
     puts
+    puts "Please choose an item by the corresponding number (e.g. '3') or 'exit' to leave or 'back' to choose a new store."
 
-    if items.length > 0
-      puts "Please choose an item by the corresponding number (e.g. '3') or 'exit' to leave"
-      item_choice = gets.strip
-      item_choice = item_choice.to_i
+    item_choice = gets.strip
+    item_choice_int = item_choice.to_i
 
-      if item_choice > 0 && item_choice <= items.length
-        # retrieve item instance that the user selected
-        clothing_item_instance = items[item_choice - 1]
-        # second-level scrape of selected item
-        determine_and_run_item_scraper(clothing_item_instance)
-        # display item details
-        clothing_item_instance.display_item_details
-        # user chooses next step
-        open_item_url_or_go_back(clothing_item_instance.url)
-      else
-        puts "Oops! Looks like an invalid choice."
-        get_users_clothing_choice(items)
-      end
-    else
-      puts "Looks like there are no clothes to look at so.. game over, bye!! ¯\_(ツ)_/¯"
+    if item_choice_int > 0 && item_choice_int <= items.length
+      # retrieve item instance that the user selected
+      clothing_item_instance = items[item_choice_int - 1]
+      # second-level scrape of selected item
+      determine_and_run_item_scraper(clothing_item_instance)
+      # display item details
+      clothing_item_instance.display_item_details
+      # user chooses next step
+      open_item_url_or_go_back(clothing_item_instance.url)
+    elsif item_choice == "exit"
+      "Byyyeeee!!! ¯\_(ツ)_/¯"
       exit
+    elsif item_choice == "back"
+      puts "Starting over!"
+      self.store.cli.list_store_options
+    else
+      puts "Oops! Looks like an invalid choice. Try again."
+      get_users_clothing_choice(items)
     end
-
   end
 
   def determine_and_run_item_scraper(item)
@@ -68,6 +68,10 @@ class ClothingStore::Scraper
       system("open", url)
     when "back"
       puts "do something"
+      self.store.display_clothing_items
+      items = self.store.get_clothing_items
+
+      get_users_clothing_choice(items)
     else
       puts "Please choose 'open', 'back', or 'exit'. :)"
       open_item_url_or_go_back(url)

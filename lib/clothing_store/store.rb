@@ -1,5 +1,5 @@
 class ClothingStore::Store
-  attr_accessor :name, :url, :clothing_items
+  attr_accessor :name, :url, :clothing_items, :cli
 
   @@all = [] # track stores that have been scraped so fair
 
@@ -28,5 +28,19 @@ class ClothingStore::Store
     @clothing_items
   end
 
+  def get_store_info_with_scraper
+    store_name = self.name
+    store_url = self.url
+
+    puts
+    puts "Getting the clothing listing for #{store_name}..."
+    puts "Using the URL: #{store_url}"
+
+    if store_name == "JCrew"
+      clothing_list_scraper = ClothingStore::JCrewScraper.new(self)
+    else
+      clothing_list_scraper = ClothingStore::SSenseScraper.new(self)
+    end
+  end
 
 end
