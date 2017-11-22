@@ -1,4 +1,6 @@
 require_relative "./scraper"
+# Child Scraper Class for JCrew
+# https://www.jcrew.com/ca/c/womens_special_sizes/tall
 
 class ClothingStore::JCrewScraper < ClothingStore::Scraper
   attr_reader :doc, :store

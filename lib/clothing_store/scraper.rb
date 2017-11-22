@@ -1,7 +1,6 @@
+# Parent Scraper Class
+
 class ClothingStore::Scraper
-  # Current options:
-  # https://www.jcrew.com/ca/c/womens_special_sizes/tall
-  # https://www.frankandoak.com/women
 
   attr_reader :store, :name, :url, :doc
 
