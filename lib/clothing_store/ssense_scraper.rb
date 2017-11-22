@@ -9,10 +9,11 @@ class ClothingStore::SSenseScraper < ClothingStore::Scraper
     @store = store
     @doc = scrape_doc_with_nokogiri(store)
     @base_url = "https://www.ssense.com"
-    get_ssense_items(@doc)
+
+    get_all_clothing_items(@doc)
   end
 
-  def get_ssense_items(doc)
+  def get_all_clothing_items(doc)
     clothing_html_containers = doc.css("figure.browsing-product-item")
 
     #loop through all results
@@ -23,18 +24,19 @@ class ClothingStore::SSenseScraper < ClothingStore::Scraper
       item.url = a_tag[0] && a_tag[0]["href"] ? self.base_url + a_tag[0]["href"] : ""
       item.name = clothing.css("p[itemprop='name']").text
       item.price = "CAD " + clothing.css("p.price span").text
-      item.brand = clothing.css("p[itemprop='name']").text
+      item.brand = clothing.css("p[itemprop='brand']").text
+      item.store = self.store
 
-      @store.add_clothing_item(item)
+      self.store.add_clothing_item(item)
     end
 
-    @store.display_clothing_items
-    items = @store.get_clothing_items
+    self.store.display_store_items
+    items = self.store.get_clothing_items
 
     get_users_clothing_choice(items)
   end
 
-  def scrape_ssense_item(item)
+  def item_scraper(item)
     item_page = scrape_doc_with_nokogiri(item)
     # get extra product details
     # on the ssense website the details are hidden on the individual item pages so grab it from a meta tag
@@ -43,6 +45,7 @@ class ClothingStore::SSenseScraper < ClothingStore::Scraper
     details = details.split(". ")
     # add each product detail to the item's "general details" attr
     details.each {|detail| item.general_details << detail}
+    item.scraper = self
   end
 
 end

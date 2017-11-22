@@ -18,7 +18,7 @@ class ClothingStore::Store
     @clothing_items << item
   end
 
-  def display_clothing_items
+  def display_store_items
     @clothing_items.each.with_index(1) do |item, index|
       puts "#{index}. #{item.name} - #{item.price}"
     end
@@ -29,14 +29,11 @@ class ClothingStore::Store
   end
 
   def get_store_info_with_scraper
-    store_name = self.name
-    store_url = self.url
-
     puts
-    puts "Getting the clothing listing for #{store_name}..."
-    puts "Using the URL: #{store_url}"
+    puts "Getting the clothing listing for #{self.name}..."
+    puts "Using the URL: #{self.url}"
 
-    if store_name == "JCrew"
+    if self.name == "JCrew"
       clothing_list_scraper = ClothingStore::JCrewScraper.new(self)
     else
       clothing_list_scraper = ClothingStore::SSenseScraper.new(self)
